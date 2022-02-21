@@ -1,3 +1,3 @@
 # PTF
 
-Instructions on how to run the code are in the report
+The Instructions expalning how to run the code are in the report. 
