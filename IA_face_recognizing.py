@@ -3,29 +3,41 @@ from mtcnn import MTCNN
 from os import listdir
 from os.path import isfile, join
 
-path = "Images"
+print("What do you want: Real time mode or load an image?")
+print("Type '1' for Real time mode or '2' for load an image")
+option = int(input("Type '1' or '2': "))
 
-file_name = [f for f in listdir(path) if isfile(join(path, f))]
+if option == 2:
+    path = "Images"
 
-print("List of folder file names: \n")
+    file_name = [f for f in listdir(path) if isfile(join(path, f))]
 
-for file in file_name:
-    print(file)
+    print("List of folder file names: \n")
 
-print()
-print("End of the list\n")
-file_name = input("Name of the file without '.jpg'. Example file name: 'Image1.jpg',just type 'Image1'.\n")
+    for file in file_name:
+        print(file)
 
-frame = cv2.imread("Images/{}.jpg".format(file_name))
+    print()
+    print("End of the list\n")
+    file_name = input("Name of the file without '.jpg'. Example file name: 'Image1.jpg',just type 'Image1'.\n")
 
-#webcam = cv2.VideoCapture(0) 
+    frame = cv2.imread("Images/{}.jpg".format(file_name))
+    scale_percent = 30 # percent of original size
+    width = int(frame.shape[1] * scale_percent / 100)
+    height = int(frame.shape[0] * scale_percent / 100)
+    dim = (width, height)
+    frame = cv2.resize(frame, dim, interpolation = cv2.INTER_AREA)
+
+if option == 1:
+    webcam = cv2.VideoCapture(0) 
 
 detector = MTCNN()
 
 while True:
     try:
-        # Read the current frame
-        #successeful_frame_read, frame = webcam.read()
+        if option == 1:
+            #Read the current frame
+            successeful_frame_read, frame = webcam.read()
 
         detection = detector.detect_faces(frame)
 
