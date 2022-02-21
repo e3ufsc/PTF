@@ -5,11 +5,6 @@ from web_auto import *
 from calculator_auto import *
 from time_auto import *
 
-#       Falta fazer a função de mudar o nome da IA
-#       Falta fazer a função para a IA chamar pelo nome da pessoa
-#       Falta terminar / fazer a função de pesquisa no wikipidia, E3 e a do clima
-#       Falta terminar a parte de reconhecimento de imagem
-
 r = sr.Recognizer()
 engine = p.init()
 rate = engine.getProperty('rate')           # getting details of current speaking rate
